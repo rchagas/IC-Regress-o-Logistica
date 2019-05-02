@@ -1,12 +1,21 @@
+import numpy as np
+import math
+
 def computeCost (X,Y,theta):
 	m = len(Y)
 	J = 0
 	pred = [0 for i in range(m)]
+	print(theta)
 	for i in range(m):
 		for j in range(len(theta)):
 			pred[i] += theta[j]*X[j][i]
-	sqrErro = [(y-h)**2 for y,h in zip(Y,pred)]
-	J = 1/(2*m)*sum(sqrErro)
+		print(pred[i])
+	pred = [(1 / (1 + math.exp(-p))) for p in pred]
+	#sqrErro = [(y-h)**2 for y,h in zip(Y,pred)]
+	#for hx,y in zip(pred,Y)
+	#	if(y ==)
+		
+	J = (-1/m) * sum([(y * math.log10(hx)) + ((1-y) * math.log10(1-hx)) for hx,y in zip(pred,Y)])
 	return J
 
 def logisticRegression(X,Y,alpha,iteracoes):
@@ -19,6 +28,7 @@ def logisticRegression(X,Y,alpha,iteracoes):
 		for j in range(m):
 			for z in range(len(theta)):
 				h[j] += theta[z]*X[z][j]
+		h = [1 / (1 + math.exp(-hx)) for hx in h]
 		erro = [h-y for h,y in zip(h,Y)]
 		for j in range(len(theta)):
 			thetaNew[j] = theta[j] - alpha*(1/m) * sum([erro*x for x,erro in zip(X[j],erro)])
