@@ -5,16 +5,10 @@ def computeCost (X,Y,theta):
 	m = len(Y)
 	J = 0
 	pred = [0 for i in range(m)]
-	print(theta)
 	for i in range(m):
 		for j in range(len(theta)):
 			pred[i] += theta[j]*X[j][i]
-		print(pred[i])
-	pred = [(1 / (1 + math.exp(-p))) for p in pred]
-	#sqrErro = [(y-h)**2 for y,h in zip(Y,pred)]
-	#for hx,y in zip(pred,Y)
-	#	if(y ==)
-		
+	pred = [(1 / (1 + math.exp(-p))) for p in pred]	
 	J = (-1/m) * sum([(y * math.log10(hx)) + ((1-y) * math.log10(1-hx)) for hx,y in zip(pred,Y)])
 	return J
 
