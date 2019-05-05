@@ -22,11 +22,13 @@ def main():
 
 	fig, graf = plt.subplots()
 	fig2, j = plt.subplots()
-	graf.scatter([x[0]/100 for x in data if x[2]==0], [x[1]/100 for x in data if x[2]==0], color='red', label='reprovados')
-	graf.scatter([x[0]/100 for x in data if x[2]==1], [x[1]/100 for x in data if x[2]==1], color='green', label='admitidos')
-	graf.plot(xo,Hx,label='Hipótese',color='red', dashes=[6, 2])
+	graf.scatter([x[0]/100 for x in data if x[2]==0], [x[1]/100 for x in data if x[2]==0], color='red', marker='x', label='reprovados')
+	graf.scatter([x[0]/100 for x in data if x[2]==1], [x[1]/100 for x in data if x[2]==1], color='green', marker='o', label='admitidos')
+	graf.plot(xo,Hx,label='Hipótese',color='red', dashes=[6, 2] )
 	j.plot(list(range(iterations)),J,label='Custo J x Iterações',color='green')
+
 	fig2.suptitle('Custo J x Iterações')
+	fig.suptitle('Resultado dos Exames')	
 	graf.set_xlabel('Resultado do Exame 1')
 	graf.set_ylabel('Resultado do Exame 2')
 	graf.legend()
